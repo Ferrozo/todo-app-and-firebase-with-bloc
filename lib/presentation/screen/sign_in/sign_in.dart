@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import '../../../bloc/bloc/auth_bloc.dart';
 import '../../../bloc/bloc/auth_event.dart';
 import '../../../bloc/bloc/auth_state.dart';
 import '../main_page/main_page.dart';
+import '../sign_up/sign_up.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -70,32 +72,85 @@ class _SignInState extends State<SignIn> {
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
-                    child: Column(
-                  children: [],
-                )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Sign In'),
+                      Center(
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                controller: _emailController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Email',
+                                  border: OutlineInputBorder(),
+                                ),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  return value != null &&
+                                          !EmailValidator.validate(value)
+                                      ? 'Enter a valid email'
+                                      : null;
+                                },
+                              ),
+                              TextFormField(
+                                keyboardType: TextInputType.text,
+                                controller: _passwordController,
+                                decoration: const InputDecoration(
+                                  hintText: 'password',
+                                  border: OutlineInputBorder(),
+                                ),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  return value != null && value.length < 6
+                                      ? 'Enter a stronger password'
+                                      : null;
+                                },
+                              ),
+                              SizedBox(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _authenticateWithEmailAndPassword(context);
+                                  },
+                                  child: const Text('Sign In'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          _authenticateWithGoogle(context);
+                        },
+                        icon: const Icon(
+                          Icons.ac_unit_sharp,
+                        ),
+                      ),
+                      const Text('Don\'t have an account?'),
+                      OutlinedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SignUp(),
+                            ),
+                          );
+                        },
+                        child: const Text('Sign Up'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             );
-
-            // return Center(
-            //   child: Column(
-            //     children: [
-            //       IconButton(
-            //           onPressed: () {
-            //             _authenticateWithGoogle(context);
-            //           },
-            //           icon: const Icon(Icons.home)),
-            //       SizedBox(
-            //         width: MediaQuery.of(context).size.width * 0.7,
-            //         child: ElevatedButton(
-            //           onPressed: () {
-            //             _authenticateWithEmailAndPassword(context);
-            //           },
-            //           child: const Text('Sign In'),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // );
+            // ignore: dead_code
+            return Container();
           },
         ),
       ),
