@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-part of 'auth_bloc.dart';
+// part of  'auth_bloc.dart';
 
 // @immutable
 abstract class AuthState extends Equatable {}
@@ -21,7 +21,7 @@ class UnAuthenticated extends AuthState {
 }
 
 class AuthError extends AuthState {
-  AuthError({this.error});
+  AuthError({required this.error});
   final String? error;
   @override
   List<Object?> get props => [error];
