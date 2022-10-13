@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/bloc/auth_bloc.dart';
+import '../../../bloc/bloc/auth_event.dart';
 import '../../../bloc/bloc/auth_state.dart';
 import '../sign_in/sign_in.dart';
 
@@ -14,6 +15,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final showCurrentUser = FirebaseAuth.instance.currentUser!;
     return Scaffold(
+      backgroundColor: const Color(0xFF181920),
       appBar: AppBar(
         title: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
@@ -34,6 +36,11 @@ class MainPage extends StatelessWidget {
                         '${showCurrentUser.photoURL}',
                       ))
                   : Container(),
+              IconButton(
+                  onPressed: () {
+                    context.read<AuthBloc>().add(SignOutRequested());
+                  },
+                  icon: const Icon(Icons.output_rounded))
               // Text('User: ${showCurrentUser.displayName}'),
             ],
           ),
