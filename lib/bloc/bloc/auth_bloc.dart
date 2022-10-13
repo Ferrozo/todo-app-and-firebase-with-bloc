@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:todo_app_with_firebase/data/repositories/auth_repository.dart';
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 import 'auth_event.dart';
 import 'auth_state.dart';
@@ -21,6 +20,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit((Authenticated()));
       } catch (e) {
         // review in error
+        emit(AuthError(error: e.toString()));
+        emit(UnAuthenticated());
+      }
+    });
+    on<SignUpRequested>((event, emit) async {
+      emit(Loading());
+      try {
+        await authRepository.signUp(
+            email: event.email, password: event.password);
+        emit(Authenticated());
+      } catch (e) {
         emit(AuthError(error: e.toString()));
         emit(UnAuthenticated());
       }
