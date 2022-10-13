@@ -54,6 +54,8 @@ class AuthRepository {
       await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
       throw Exception(e.toString());
+      // ignore: avoid_print
+      print(e.toString());
     }
   }
 }

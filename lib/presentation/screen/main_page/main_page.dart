@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/bloc/auth_bloc.dart';
@@ -14,25 +14,44 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final showCurrentUser = FirebaseAuth.instance.currentUser!;
     return Scaffold(
+      appBar: AppBar(
+        title: BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is UnAuthenticated) {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const SignIn()),
+                (route) => false,
+              );
+            }
+          },
+          child: Row(
+            children: [
+              showCurrentUser.photoURL != null
+                  ? CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.grey,
+                      child: Image.network(
+                        '${showCurrentUser.photoURL}',
+                      ))
+                  : Container(),
+              // Text('User: ${showCurrentUser.displayName}'),
+            ],
+          ),
+        ),
+      ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is UnAuthenticated) {
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => SignIn()),
+              MaterialPageRoute(builder: (context) => const SignIn()),
               (route) => false,
             );
           }
         },
         child: Center(
-          child: Container(
-              child: Column(
-            children: [
-              Text('Email: ${showCurrentUser.email}'),
-              showCurrentUser.photoURL != null
-                  ? Image.network('${showCurrentUser.photoURL}')
-                  : Container()
-            ],
-          )),
+          child: Column(
+            children: [],
+          ),
         ),
       ),
     );

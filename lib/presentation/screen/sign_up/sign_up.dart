@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_with_firebase/bloc/bloc/auth_bloc.dart';
@@ -70,7 +71,7 @@ class _SignUpState extends State<SignUp> {
           if (state is UnAuthenticated) {
             return Center(
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
