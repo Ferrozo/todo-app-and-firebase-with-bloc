@@ -223,7 +223,7 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ),
                                   const SizedBox(width: 10),
-                                  OutlinedButton(
+                                  TextButton(
                                     onPressed: () {
                                       Navigator.pushReplacement(
                                         context,
