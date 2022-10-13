@@ -290,7 +290,7 @@ class _SignInState extends State<SignIn> {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            OutlinedButton(
+                            TextButton(
                               onPressed: () {
                                 Navigator.pushReplacement(
                                   context,
