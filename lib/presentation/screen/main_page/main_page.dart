@@ -30,6 +30,7 @@ class MainPage extends StatelessWidget {
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
             children: [
               showCurrentUser.photoURL != null
                   ? CircleAvatar(
@@ -38,6 +39,7 @@ class MainPage extends StatelessWidget {
                       child: Image.network(
                         '${showCurrentUser.photoURL}',
                       ))
+
                   : Image.asset(
                       'src/assets/userAvatar.png',
                       width: 40,
@@ -50,6 +52,7 @@ class MainPage extends StatelessWidget {
                     Icons.more_vert_rounded,
                     size: 20,
                   ))
+
               // Text('User: ${showCurrentUser.displayName}'),
             ],
           ),
@@ -60,7 +63,7 @@ class MainPage extends StatelessWidget {
           if (state is UnAuthenticated) {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => const SignIn()),
-              (route) => true,
+              (route) => false,
             );
           }
         },
@@ -68,6 +71,7 @@ class MainPage extends StatelessWidget {
           child: Column(
               // children: [],
               ),
+
         ),
       ),
     );
