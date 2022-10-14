@@ -1,4 +1,7 @@
 // ignore: depend_on_referenced_packages
+// ignore_for_file: must_call_super
+
+// ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_with_firebase/bloc/bloc/auth_bloc.dart';

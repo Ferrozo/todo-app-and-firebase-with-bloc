@@ -1,3 +1,5 @@
+// ignore_for_file: must_call_super
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages

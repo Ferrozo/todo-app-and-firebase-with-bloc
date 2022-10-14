@@ -66,8 +66,8 @@ class MainPage extends StatelessWidget {
         },
         child: Center(
           child: Column(
-            children: [],
-          ),
+              // children: [],
+              ),
         ),
       ),
     );

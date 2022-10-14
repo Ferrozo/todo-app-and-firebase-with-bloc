@@ -55,7 +55,6 @@ class AuthRepository {
     } catch (e) {
       throw Exception(e.toString());
       // ignore: avoid_print
-      print(e.toString());
     }
   }
 }
