@@ -119,6 +119,7 @@ class _SignUpState extends State<SignUp> {
                                 ),
                                 child: TextFormField(
                                   style: const TextStyle(
+                                    color: Colors.grey,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   controller: _emailController,
@@ -159,6 +160,7 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   child: TextFormField(
                                     style: const TextStyle(
+                                      color: Colors.grey,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     obscuringCharacter: '*',

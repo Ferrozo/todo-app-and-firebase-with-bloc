@@ -17,6 +17,8 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF181920),
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is UnAuthenticated) {
@@ -27,6 +29,7 @@ class MainPage extends StatelessWidget {
             }
           },
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               showCurrentUser.photoURL != null
                   ? CircleAvatar(
@@ -35,12 +38,18 @@ class MainPage extends StatelessWidget {
                       child: Image.network(
                         '${showCurrentUser.photoURL}',
                       ))
-                  : Container(),
+                  : Image.asset(
+                      'src/assets/userAvatar.png',
+                      width: 40,
+                    ),
               IconButton(
                   onPressed: () {
                     context.read<AuthBloc>().add(SignOutRequested());
                   },
-                  icon: const Icon(Icons.output_rounded))
+                  icon: const Icon(
+                    Icons.more_vert_rounded,
+                    size: 20,
+                  ))
               // Text('User: ${showCurrentUser.displayName}'),
             ],
           ),
@@ -51,7 +60,7 @@ class MainPage extends StatelessWidget {
           if (state is UnAuthenticated) {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => const SignIn()),
-              (route) => false,
+              (route) => true,
             );
           }
         },
