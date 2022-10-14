@@ -1,7 +1,4 @@
 library todos_repository;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:todos_api/todos_api.dart' show Todo;
+export 'src/todos_repository.dart';
