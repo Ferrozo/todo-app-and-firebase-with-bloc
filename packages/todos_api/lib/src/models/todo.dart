@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
-import 'package:todos_api/todos_api.dart';
 import 'package:uuid/uuid.dart';
+
+import 'json_map.dart';
 
 part 'todo.g.dart';
 
