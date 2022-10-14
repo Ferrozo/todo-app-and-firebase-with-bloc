@@ -1,3 +1,5 @@
+// ignore_for_file: must_call_super
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -125,14 +127,13 @@ class _SignInState extends State<SignIn> {
                                   ),
                                   child: TextFormField(
                                     style: const TextStyle(
+                                      color: Colors.grey,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     keyboardType: TextInputType.emailAddress,
                                     controller: _emailController,
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
-                                      labelStyle:
-                                          TextStyle(color: Colors.white),
                                       hintText: 'Email',
                                       errorBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -167,6 +168,7 @@ class _SignInState extends State<SignIn> {
                                   ),
                                   child: TextFormField(
                                     style: const TextStyle(
+                                      color: Colors.grey,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     obscuringCharacter: '*',
@@ -265,8 +267,8 @@ class _SignInState extends State<SignIn> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.network(
-                                  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png',
+                                Image.asset(
+                                  'src/assets/google.png',
                                   height: 30,
                                   width: 30,
                                 ),
