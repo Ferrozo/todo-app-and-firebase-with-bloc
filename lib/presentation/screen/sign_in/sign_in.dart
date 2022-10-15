@@ -225,12 +225,14 @@ class _SignInState extends State<SignIn> {
                                   width: MediaQuery.of(context).size.width,
                                   child: ElevatedButton(
                                     style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.indigo[800]),
                                       shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20.0),
-                                          // side: const BorderSide(color: Colors.white),
                                         ),
                                       ),
                                     ),
@@ -300,7 +302,10 @@ class _SignInState extends State<SignIn> {
                                       builder: (context) => const SignUp()),
                                 );
                               },
-                              child: const Text('Sign Up'),
+                              child: const Text('Sign Up',
+                                  style: TextStyle(
+                                    color: Colors.indigo,
+                                  )),
                             )
                           ],
                         ),
