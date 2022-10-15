@@ -1,6 +1,4 @@
 // ignore: depend_on_referenced_packages
-// ignore_for_file: must_call_super
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_with_firebase/bloc/bloc/auth_bloc.dart';
@@ -35,6 +33,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
+  // ignore: must_call_super
   void initState() {
     _passwordVisible = true;
   }
@@ -122,7 +121,6 @@ class _SignUpState extends State<SignUp> {
                                 child: TextFormField(
                                   style: const TextStyle(
                                     color: Colors.grey,
-
                                     fontWeight: FontWeight.bold,
                                   ),
                                   controller: _emailController,
@@ -203,6 +201,8 @@ class _SignUpState extends State<SignUp> {
                                 width: MediaQuery.of(context).size.width,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Colors.indigo[800]),
                                     shape: MaterialStateProperty.all<
                                         RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -237,7 +237,8 @@ class _SignUpState extends State<SignUp> {
                                                 const SignIn()),
                                       );
                                     },
-                                    child: const Text('Sign In'),
+                                    child: const Text('Sign In',
+                                        style: TextStyle(color: Colors.indigo)),
                                   )
                                 ],
                               ),

@@ -1,10 +1,12 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todos_api/src/todos_api.dart';
+import 'package:todos_api/todos_api.dart';
 
 class LocalStorageTodosApi extends TodosApi {
   LocalStorageTodosApi({
@@ -49,7 +51,7 @@ class LocalStorageTodosApi extends TodosApi {
     if (todoIndex >= 0) {
       todos[todoIndex] = todo;
     } else {
-      todo.add(todo);
+      todos.add(todo);
     }
     return _setValue(kTodosCollectionKey, json.encode(todos));
   }

@@ -30,16 +30,22 @@ class MainPage extends StatelessWidget {
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
             children: [
               showCurrentUser.photoURL != null
-                  ? CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.grey,
-                      child: Image.network(
-                        '${showCurrentUser.photoURL}',
-                      ))
-
+                  ? Container(
+                      height: 55,
+                      width: 55,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 2.0,
+                            color: const Color.fromARGB(255, 14, 72, 234)),
+                        borderRadius: BorderRadius.circular(50),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage('${showCurrentUser.photoURL}'),
+                        ),
+                      ),
+                    )
                   : Image.asset(
                       'src/assets/userAvatar.png',
                       width: 40,
@@ -67,12 +73,174 @@ class MainPage extends StatelessWidget {
             );
           }
         },
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
-              // children: [],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              showCurrentUser.displayName != null
+                  ? Text(
+                      'What\'s up, ${showCurrentUser.displayName}!',
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    )
+                  : const Text(
+                      'What\'s up, Dude!',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+              const SizedBox(height: 30),
+              Text(
+                'CATEGORIES',
+                style: TextStyle(
+                  color: Colors.grey.withOpacity(0.6),
+                  fontSize: 16,
+                ),
               ),
-
+              const SizedBox(height: 20),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      height: 115,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        color: Colors.indigo[800],
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '0 tasks',
+                            style: TextStyle(
+                              color: Colors.grey.withOpacity(0.8),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Studies',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            height: 3,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.all(20),
+                      height: 115,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        color: Colors.indigo[800],
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '0 tasks',
+                            style: TextStyle(
+                              color: Colors.grey.withOpacity(0.8),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Business',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            height: 3,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.all(20),
+                      height: 115,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        color: Colors.indigo[800],
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '0 tasks',
+                            style: TextStyle(
+                              color: Colors.grey.withOpacity(0.8),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Work',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            height: 3,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                'TODAY\'S TASKS',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo[800],
+        onPressed: () {},
+        child: const Icon(Icons.add),
       ),
     );
   }
