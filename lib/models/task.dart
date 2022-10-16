@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Task extends Equatable {
   Task({required this.title, this.isDone, this.isDeleted}) {
     isDone = isDone ?? false;

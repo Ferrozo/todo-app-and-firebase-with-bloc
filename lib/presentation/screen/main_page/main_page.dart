@@ -8,20 +8,27 @@ import '../../../blocs/blocs/auth_event.dart';
 import '../../../blocs/blocs/auth_state.dart';
 import '../../../blocs/blocs/tasks_bloc.dart';
 import '../../../models/task.dart';
+import '../../widgets/add_task_input.dart';
+import '../../widgets/todo_category.dart';
 import '../../widgets/todo_list.dart';
 import '../sign_in/sign_in.dart';
 
 // ignore: must_be_immutable
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   MainPage({Key? key}) : super(key: key);
 
-  TextEditingController titleControll = TextEditingController();
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  TextEditingController titleController = TextEditingController();
 
   void _addTask(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => SingleChildScrollView(
-        child: AddTaskInput(titleController: titleControll),
+      builder: (context) => const SingleChildScrollView(
+        child: AddTaskInput(),
       ),
     );
   }
@@ -29,6 +36,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final showCurrentUser = FirebaseAuth.instance.currentUser!;
+    final List categoryList = ['Studies', 'Work', 'Business'];
     return BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
         List<Task> todosList = state.allTasks;
@@ -70,15 +78,14 @@ class MainPage extends StatelessWidget {
                           width: 40,
                         ),
                   IconButton(
-                      onPressed: () {
-                        context.read<AuthBloc>().add(SignOutRequested());
-                      },
-                      icon: const Icon(
-                        Icons.more_vert_rounded,
-                        size: 20,
-                      ))
-
-                  // Text('User: ${showCurrentUser.displayName}'),
+                    onPressed: () {
+                      context.read<AuthBloc>().add(SignOutRequested());
+                    },
+                    icon: const Icon(
+                      Icons.more_vert_rounded,
+                      size: 20,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -128,119 +135,11 @@ class MainPage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.all(20),
-                          height: 115,
-                          width: 180,
-                          decoration: BoxDecoration(
-                            color: Colors.indigo[800],
-                            borderRadius: BorderRadius.circular(25),
+                        for (int i = 0; i < 3; i++)
+                          TodoCategory(
+                            categoryTitle: categoryList[i],
+                            numberOfTasks: 0,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '0 tasks',
-                                style: TextStyle(
-                                  color: Colors.grey.withOpacity(0.8),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Studies',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              Container(
-                                height: 3,
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          padding: const EdgeInsets.all(20),
-                          height: 115,
-                          width: 180,
-                          decoration: BoxDecoration(
-                            color: Colors.indigo[800],
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '0 tasks',
-                                style: TextStyle(
-                                  color: Colors.grey.withOpacity(0.8),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Business',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              Container(
-                                height: 3,
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          padding: const EdgeInsets.all(20),
-                          height: 115,
-                          width: 180,
-                          decoration: BoxDecoration(
-                            color: Colors.indigo[800],
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '0 tasks',
-                                style: TextStyle(
-                                  color: Colors.grey.withOpacity(0.8),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Work',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              Container(
-                                height: 3,
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -264,46 +163,6 @@ class MainPage extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class AddTaskInput extends StatelessWidget {
-  const AddTaskInput({
-    Key? key,
-    required this.titleController,
-  }) : super(key: key);
-
-  final TextEditingController titleController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Column(
-        children: [
-          const Text(
-            'Add your Task',
-          ),
-          TextField(
-            autofocus: true,
-            controller: titleController,
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              var task = Task(title: titleController.text);
-              context.read<TasksBloc>().add(AddTask(task: task));
-              Navigator.pop(context);
-            },
-            child: Text(''),
-          )
-        ],
-      ),
     );
   }
 }
