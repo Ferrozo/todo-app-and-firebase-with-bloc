@@ -53,7 +53,7 @@ class AuthRepository {
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
-      throw Exception('Something went wrong please try again.');
+      throw ('Something went wrong please try again.');
     }
   }
 }
