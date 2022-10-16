@@ -15,7 +15,7 @@ import '../sign_in/sign_in.dart';
 
 // ignore: must_be_immutable
 class MainPage extends StatefulWidget {
-  MainPage({Key? key}) : super(key: key);
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();

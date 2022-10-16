@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/blocs/tasks_bloc.dart';
 import '../../models/task.dart';
@@ -29,6 +30,8 @@ class TodoList extends StatelessWidget {
               },
             ),
             title: Text(todo.title),
+            onLongPress: () =>
+                context.read<TasksBloc>().add(DeleteTask(task: todo)),
           );
         },
       ),

@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return MainPage();
+                  return const MainPage();
                 }
                 return const SignIn();
               }),
