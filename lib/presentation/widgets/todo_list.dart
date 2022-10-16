@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/blocs/tasks_bloc.dart';
 import '../../models/task.dart';
 
 class TodoList extends StatelessWidget {
@@ -23,7 +24,9 @@ class TodoList extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50))),
               value: todo.isDone,
-              onChanged: (v) {},
+              onChanged: (v) {
+                context.read<TasksBloc>().add(UpdateTask(task: todo));
+              },
             ),
             title: Text(todo.title),
           );
