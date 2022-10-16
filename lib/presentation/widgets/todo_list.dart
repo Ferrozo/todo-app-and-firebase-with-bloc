@@ -19,19 +19,36 @@ class TodoList extends StatelessWidget {
         itemCount: todosList.length,
         itemBuilder: (context, index) {
           var todo = todosList[index];
-
-          return ListTile(
-            trailing: Checkbox(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
-              value: todo.isDone,
-              onChanged: (v) {
-                context.read<TasksBloc>().add(UpdateTask(task: todo));
-              },
+          return Container(
+            alignment: Alignment.center,
+            height: 60,
+            margin: const EdgeInsets.only(
+              top: 10,
             ),
-            title: Text(todo.title),
-            onLongPress: () =>
-                context.read<TasksBloc>().add(DeleteTask(task: todo)),
+            decoration: BoxDecoration(
+              color: Colors.indigo[800],
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: ListTile(
+              trailing: Checkbox(
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(50))),
+                value: todo.isDone,
+                onChanged: (v) {
+                  context.read<TasksBloc>().add(UpdateTask(task: todo));
+                },
+              ),
+              title: Text(
+                todo.title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white70,
+                  // fontWeight: FontWeight.bold,
+                ),
+              ),
+              onLongPress: () =>
+                  context.read<TasksBloc>().add(DeleteTask(task: todo)),
+            ),
           );
         },
       ),

@@ -82,8 +82,8 @@ class _MainPageState extends State<MainPage> {
                       context.read<AuthBloc>().add(SignOutRequested());
                     },
                     icon: const Icon(
-                      Icons.more_vert_rounded,
-                      size: 20,
+                      Icons.menu,
+                      size: 25,
                     ),
                   )
                 ],
@@ -151,6 +151,7 @@ class _MainPageState extends State<MainPage> {
                       fontSize: 14,
                     ),
                   ),
+                  const SizedBox(height: 10),
                   TodoList(todosList: todosList),
                 ],
               ),
