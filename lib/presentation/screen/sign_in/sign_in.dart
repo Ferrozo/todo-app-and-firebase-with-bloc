@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/bloc/auth_bloc.dart';
-import '../../../bloc/bloc/auth_event.dart';
-import '../../../bloc/bloc/auth_state.dart';
+import '../../../blocs/blocs/auth_bloc.dart';
+import '../../../blocs/blocs/auth_event.dart';
+import '../../../blocs/blocs/auth_state.dart';
 import '../main_page/main_page.dart';
 import '../sign_up/sign_up.dart';
 
@@ -59,8 +59,8 @@ class _SignInState extends State<SignIn> {
         listener: (context, state) {
           if (state is Authenticated) {
             // Navigating to the dashboard screen if the user is authenticated
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const MainPage()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => MainPage()));
           }
           if (state is AuthError) {
             // Showing the error message if the user has entered invalid credentials

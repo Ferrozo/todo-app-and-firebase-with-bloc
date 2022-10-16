@@ -1,11 +1,11 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app_with_firebase/bloc/bloc/auth_bloc.dart';
+import 'package:todo_app_with_firebase/blocs/blocs/auth_bloc.dart';
 import 'package:email_validator/email_validator.dart';
 
-import '../../../bloc/bloc/auth_event.dart';
-import '../../../bloc/bloc/auth_state.dart';
+import '../../../blocs/blocs/auth_event.dart';
+import '../../../blocs/blocs/auth_state.dart';
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 
@@ -54,7 +54,7 @@ class _SignUpState extends State<SignUp> {
           if (state is Authenticated) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const MainPage(),
+                builder: (context) => MainPage(),
               ),
             );
           }

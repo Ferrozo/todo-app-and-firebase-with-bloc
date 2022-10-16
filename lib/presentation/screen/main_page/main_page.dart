@@ -3,14 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/bloc/auth_bloc.dart';
-import '../../../bloc/bloc/auth_event.dart';
-import '../../../bloc/bloc/auth_state.dart';
+import '../../../blocs/blocs/auth_bloc.dart';
+import '../../../blocs/blocs/auth_event.dart';
+import '../../../blocs/blocs/auth_state.dart';
+import '../../../models/task.dart';
+import '../../widgets/todo_list.dart';
 import '../sign_in/sign_in.dart';
 
+// ignore: must_be_immutable
 class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+  MainPage({Key? key}) : super(key: key);
 
+  List<Task> todosList = [
+    Task(title: 'First Todo'),
+    Task(title: 'Second Todo'),
+    Task(title: 'third Todo')
+  ];
   @override
   Widget build(BuildContext context) {
     final showCurrentUser = FirebaseAuth.instance.currentUser!;
@@ -233,6 +241,7 @@ class MainPage extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
+              TodoList(todosList: todosList),
             ],
           ),
         ),
