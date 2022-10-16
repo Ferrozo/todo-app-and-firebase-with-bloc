@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/blocs/tasks_bloc.dart';
 import '../../models/task.dart';
+import '../../services/id_generator.dart';
 
 class AddTaskInput extends StatelessWidget {
   const AddTaskInput({
@@ -27,11 +28,12 @@ class AddTaskInput extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
           ElevatedButton(
             onPressed: () {
-              var task = Task(title: titleController.text);
+              var task =
+                  Task(title: titleController.text, taskId: GUIDGen.generate());
               context.read<TasksBloc>().add(AddTask(task: task));
               Navigator.pop(context);
             },

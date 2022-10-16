@@ -1,11 +1,18 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class Task extends Equatable {
-  Task({required this.title, this.isDone, this.isDeleted}) {
+  Task(
+      {required this.title,
+      required this.taskId,
+      this.isDone,
+      this.isDeleted}) {
     isDone = isDone ?? false;
     isDeleted = isDeleted ?? false;
   }
+  final String taskId;
   final String title;
   bool? isDone;
   bool? isDeleted;
@@ -17,6 +24,7 @@ class Task extends Equatable {
   }) {
     return Task(
         title: title ?? this.title,
+        taskId: this.taskId,
         isDone: isDone ?? this.isDone,
         isDeleted: isDeleted ?? this.isDeleted);
   }
@@ -24,6 +32,7 @@ class Task extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'title': title,
+      'taskId': taskId,
       'isDone': isDone,
       'isDeleted': isDeleted,
     };
@@ -32,10 +41,12 @@ class Task extends Equatable {
   factory Task.fromMap(Map<String, dynamic> map) {
     return Task(
       title: map['title'],
+      taskId: map['taskId'],
       isDone: map['isDone'],
       isDeleted: map['isDeleted'],
     );
   }
 
-  List<Object?> get props => [title, isDone, isDeleted];
+  @override
+  List<Object?> get props => [title, taskId, isDone, isDeleted];
 }

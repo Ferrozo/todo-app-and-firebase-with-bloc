@@ -54,7 +54,7 @@ class _SignUpState extends State<SignUp> {
           if (state is Authenticated) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => MainPage(),
+                builder: (context) => const MainPage(),
               ),
             );
           }
