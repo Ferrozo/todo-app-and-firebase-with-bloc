@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/blocs/auth_bloc.dart';
 import '../../../data/repositories/auth_repository.dart';
+import '../../../services/app_route.dart';
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.appRouter}) : super(key: key);
+  final AppRouter appRouter;
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
@@ -19,13 +21,15 @@ class HomePage extends StatelessWidget {
         ),
         child: MaterialApp(
           home: StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return const MainPage();
-                }
-                return const SignIn();
-              }),
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const MainPage();
+              }
+              return const SignIn();
+            },
+          ),
+          onGenerateRoute: appRouter.onGenerateRoute,
         ),
       ),
     );

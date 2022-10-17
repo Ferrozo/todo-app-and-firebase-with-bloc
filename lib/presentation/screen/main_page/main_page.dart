@@ -11,11 +11,13 @@ import '../../../models/task.dart';
 import '../../widgets/add_task_input.dart';
 import '../../widgets/todo_category.dart';
 import '../../widgets/todo_list.dart';
+import '../left_bar/left_bar.dart';
 import '../sign_in/sign_in.dart';
 
 // ignore: must_be_immutable
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
+  static const id = 'main_page';
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -90,6 +92,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
+          drawer: const LeftBar(),
           body: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is UnAuthenticated) {
