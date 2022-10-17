@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_with_firebase/presentation/widgets/task_lite.dart';
 import '../../blocs/blocs/tasks_bloc.dart';
 import '../../models/task.dart';
 
@@ -19,19 +20,17 @@ class TodoList extends StatelessWidget {
         itemCount: todosList.length,
         itemBuilder: (context, index) {
           var todo = todosList[index];
-
-          return ListTile(
-            trailing: Checkbox(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
-              value: todo.isDone,
-              onChanged: (v) {
-                context.read<TasksBloc>().add(UpdateTask(task: todo));
-              },
+          return Container(
+            alignment: Alignment.center,
+            height: 60,
+            margin: const EdgeInsets.only(
+              top: 10,
             ),
-            title: Text(todo.title),
-            onLongPress: () =>
-                context.read<TasksBloc>().add(DeleteTask(task: todo)),
+            decoration: BoxDecoration(
+              color: Colors.indigo[800],
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: TaskTile(todo: todo),
           );
         },
       ),

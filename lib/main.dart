@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:todo_app_with_firebase/presentation/screen/home/home_page.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_with_firebase/services/app_route.dart';
 import 'blocs/blocs/tasks_bloc.dart';
 
 Future<void> main() async {
@@ -15,8 +16,13 @@ Future<void> main() async {
       storageDirectory: await getApplicationDocumentsDirectory());
   await Firebase.initializeApp();
   HydratedBlocOverrides.runZoned(
-    () => runApp(BlocProvider(
-        create: (context) => TasksBloc(), child: const HomePage())),
+    () => runApp(
+        // ignore: prefer_const_constructors
+        BlocProvider(
+            create: (context) => TasksBloc(),
+            child: HomePage(
+              appRouter: AppRouter(),
+            ))),
     storage: storage,
   );
 }
