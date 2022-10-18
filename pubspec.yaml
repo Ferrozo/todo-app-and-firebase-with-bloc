@@ -49,14 +49,6 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
 
-  local_storage_todos_api:
-    path: packages/local_storage_todos_api
-  todos_api:
-    path: packages/todos_api
-  todos_repository:
-    path: packages/todos_repository
-  path_provider: ^2.0.11
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
