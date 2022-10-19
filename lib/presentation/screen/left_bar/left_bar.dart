@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/blocs/auth_state.dart';
 import '../../../blocs/blocs/tasks_bloc.dart';
-import '../home/home_page.dart';
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 import '../trash/trash.dart';
@@ -95,7 +94,7 @@ class _LeftBarState extends State<LeftBar> {
                           child: ListTile(
                             leading: const Icon(Icons.folder),
                             title: const Text('My Tasks'),
-                            trailing: Text('${state.removeTasks.length}'),
+                            trailing: Text('${state.removedTasks.length}'),
                           ),
                         );
                       },

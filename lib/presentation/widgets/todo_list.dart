@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
+// ignore: depend_on_referenced_packages, unused_import
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_with_firebase/presentation/widgets/task_lite.dart';
-import '../../blocs/blocs/tasks_bloc.dart';
 import '../../models/task.dart';
 
 class TodoList extends StatelessWidget {
