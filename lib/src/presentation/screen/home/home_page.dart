@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../blocs/blocs/auth_bloc.dart';
-import '../../../data/repositories/auth_repository.dart';
-import '../../../services/app_route.dart';
+import 'package:todo_app_with_firebase/src/domain/repositories/auth_repository.dart';
+import 'package:todo_app_with_firebase/src/domain/usecases/app_route.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth_bloc.dart';
+
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 

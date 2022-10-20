@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/blocs/tasks_bloc.dart';
-import '../../models/task.dart';
+import 'package:todo_app_with_firebase/src/data/models/task.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
 
 class TaskTile extends StatelessWidget {
   const TaskTile({
@@ -12,6 +12,12 @@ class TaskTile extends StatelessWidget {
 
   final Task todo;
 
+  void _moveToTrashOrDeleteTask(BuildContext value, Task task) {
+    task.isDeleted!
+        ? value.read<TasksBloc>().add(DeleteTask(task: task))
+        : value.read<TasksBloc>().add(RemoveTask(task: task));
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -19,9 +25,11 @@ class TaskTile extends StatelessWidget {
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(50))),
         value: todo.isDone,
-        onChanged: (v) {
-          context.read<TasksBloc>().add(UpdateTask(task: todo));
-        },
+        onChanged: todo.isDeleted == false
+            ? (v) {
+                context.read<TasksBloc>().add(UpdateTask(task: todo));
+              }
+            : null,
       ),
       title: Text(
         todo.title,
@@ -32,7 +40,7 @@ class TaskTile extends StatelessWidget {
           // fontWeight: FontWeight.bold,
         ),
       ),
-      onLongPress: () => context.read<TasksBloc>().add(DeleteTask(task: todo)),
+      onLongPress: () => _moveToTrashOrDeleteTask(context, todo),
     );
   }
 }

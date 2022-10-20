@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/blocs/tasks_bloc.dart';
-import '../../models/task.dart';
-import '../../services/id_generator.dart';
+import 'package:todo_app_with_firebase/src/data/models/task.dart';
+import 'package:todo_app_with_firebase/src/domain/usecases/id_generator.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
 
 class AddTaskInput extends StatelessWidget {
   const AddTaskInput({

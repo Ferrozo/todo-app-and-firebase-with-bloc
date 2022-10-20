@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../presentation/screen/main_page/main_page.dart';
-import '../presentation/screen/trash/trash.dart';
+import 'package:todo_app_with_firebase/src/presentation/screen/main_page/main_page.dart';
+import 'package:todo_app_with_firebase/src/presentation/screen/trash/trash.dart';
 
 class AppRouter {
   Route? onGenerateRoute(RouteSettings routeSettings) {
