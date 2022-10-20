@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_state.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_state.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks/tasks_bloc.dart';
+
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 import '../trash/trash.dart';
@@ -16,6 +17,13 @@ class LeftBar extends StatefulWidget {
 }
 
 class _LeftBarState extends State<LeftBar> {
+  bool isDarkMode = false;
+
+  @override
+  void initState() {
+    isDarkMode = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     final showCurrentUser = FirebaseAuth.instance.currentUser!;
@@ -32,7 +40,8 @@ class _LeftBarState extends State<LeftBar> {
               }
             },
             child: GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(MainPage.id),
+              onTap: () =>
+                  Navigator.of(context).pushReplacementNamed(MainPage.id),
               child: Drawer(
                 width: 240,
                 backgroundColor: Colors.indigo[800],
@@ -76,8 +85,8 @@ class _LeftBarState extends State<LeftBar> {
                     BlocBuilder<TasksBloc, TasksState>(
                       builder: (context, state) {
                         return GestureDetector(
-                          onTap: () =>
-                              Navigator.of(context).pushNamed(MainPage.id),
+                          onTap: () => Navigator.of(context)
+                              .pushReplacementNamed(MainPage.id),
                           child: ListTile(
                             leading: const Icon(Icons.folder),
                             title: const Text('All tasks'),
@@ -89,8 +98,8 @@ class _LeftBarState extends State<LeftBar> {
                     BlocBuilder<TasksBloc, TasksState>(
                       builder: (context, state) {
                         return GestureDetector(
-                          onTap: () =>
-                              Navigator.of(context).pushNamed(Trash.id),
+                          onTap: () => Navigator.of(context)
+                              .pushReplacementNamed(Trash.id),
                           child: ListTile(
                             leading: const Icon(Icons.delete),
                             title: const Text('Trash'),
@@ -99,6 +108,14 @@ class _LeftBarState extends State<LeftBar> {
                         );
                       },
                     ),
+                    Switch(
+                      value: isDarkMode,
+                      onChanged: (v) {
+                        setState(() {
+                          isDarkMode = v;
+                        });
+                      },
+                    )
                   ],
                 ),
               ),

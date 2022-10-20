@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks/tasks_bloc.dart';
 import 'package:todo_app_with_firebase/src/presentation/widgets/todo_list.dart';
 import '../left_bar/left_bar.dart';
 
