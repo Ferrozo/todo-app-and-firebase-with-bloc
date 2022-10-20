@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_with_firebase/src/data/models/task.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_bloc.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_event.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_state.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_event.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_state.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks/tasks_bloc.dart';
 
 import '../../widgets/add_task_input.dart';
 import '../../widgets/todo_category.dart';

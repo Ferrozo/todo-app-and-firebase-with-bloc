@@ -4,9 +4,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_bloc.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_event.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/auth_state.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_event.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_state.dart';
 
 import '../main_page/main_page.dart';
 import '../sign_up/sign_up.dart';

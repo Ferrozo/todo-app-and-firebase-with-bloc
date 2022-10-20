@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_with_firebase/src/domain/usecases/app_route.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks/tasks_bloc.dart';
 import 'package:todo_app_with_firebase/src/presentation/screen/home/home_page.dart';
 
 Future<void> main() async {
