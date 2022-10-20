@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../blocs/blocs/auth_state.dart';
-import '../../../blocs/blocs/tasks_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth_state.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/tasks_bloc.dart';
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 import '../trash/trash.dart';
@@ -80,7 +80,7 @@ class _LeftBarState extends State<LeftBar> {
                               Navigator.of(context).pushNamed(MainPage.id),
                           child: ListTile(
                             leading: const Icon(Icons.folder),
-                            title: const Text('My Tasks'),
+                            title: const Text('All tasks'),
                             trailing: Text('${state.allTasks.length}'),
                           ),
                         );
@@ -92,8 +92,8 @@ class _LeftBarState extends State<LeftBar> {
                           onTap: () =>
                               Navigator.of(context).pushNamed(Trash.id),
                           child: ListTile(
-                            leading: const Icon(Icons.folder),
-                            title: const Text('My Tasks'),
+                            leading: const Icon(Icons.delete),
+                            title: const Text('Trash'),
                             trailing: Text('${state.removedTasks.length}'),
                           ),
                         );

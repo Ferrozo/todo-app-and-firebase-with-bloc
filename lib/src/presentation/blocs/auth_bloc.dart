@@ -1,6 +1,6 @@
-import 'package:todo_app_with_firebase/data/repositories/auth_repository.dart';
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:todo_app_with_firebase/src/domain/repositories/auth_repository.dart';
 
 import 'auth_event.dart';
 import 'auth_state.dart';

@@ -1,7 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import '../../models/task.dart';
+import 'package:todo_app_with_firebase/src/data/models/task.dart';
 
 part 'tasks_event.dart';
 part 'tasks_state.dart';
@@ -16,7 +16,10 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
 
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    emit(TasksState(allTasks: List.from(state.allTasks)..add(event.task)));
+    emit(TasksState(
+      allTasks: List.from(state.allTasks)..add(event.task),
+      removedTasks: state.removedTasks,
+    ));
   }
 
   void _onUpdateTask(UpdateTask event, Emitter<TasksState> emit) {
@@ -28,12 +31,15 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
         ? allTasks.insert(index, task.copyWith(isDone: true))
         : allTasks.insert(index, task.copyWith(isDone: false));
 
-    emit(TasksState(allTasks: allTasks));
+    emit(TasksState(allTasks: allTasks, removedTasks: state.removedTasks));
   }
 
   void _onDeleteTask(DeleteTask event, Emitter<TasksState> emit) {
     final state = this.state;
-    emit(TasksState(allTasks: List.from(state.allTasks)..remove(event.task)));
+    emit(TasksState(
+      allTasks: state.allTasks,
+      removedTasks: List.from(state.removedTasks)..remove(event.task),
+    ));
   }
 
   void _onRemoveTask(RemoveTask event, Emitter<TasksState> emit) {
