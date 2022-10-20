@@ -1,10 +1,14 @@
 part of 'dark_mode_bloc.dart';
 
-abstract class DarkModeState extends Equatable {
-  const DarkModeState();
-  
+class DarkModeState extends Equatable {
+  DarkModeState({required this.isDarkMode});
+
+  bool isDarkMode;
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isDarkMode];
 }
 
-class DarkModeInitial extends DarkModeState {}
+class DarkModeInitial extends DarkModeState {
+  DarkModeInitial({required super.isDarkMode});
+}

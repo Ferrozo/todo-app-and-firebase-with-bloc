@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
       builder: (context, state) {
         List<Task> todosList = state.allTasks;
         return Scaffold(
-          backgroundColor: const Color(0xFF181920),
+          // backgroundColor: const Color(0xFF181920),
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,

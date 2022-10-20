@@ -14,7 +14,7 @@ class Trash extends StatelessWidget {
     return BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: const Color(0xFF181920),
+          // backgroundColor: const Color(0xFF181920),
           appBar: AppBar(
             centerTitle: true,
             title: const Text('Trash'),

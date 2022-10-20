@@ -1,34 +1,49 @@
 import 'package:flutter/material.dart';
 
-class FlutterTodosTheme {
-  static ThemeData get light {
-    return ThemeData(
-      appBarTheme: const AppBarTheme(
-        color: Color(0xFF13B9FF),
-      ),
-      colorScheme: ColorScheme.fromSwatch(
-        accentColor: const Color(0xFF13B9FF),
-      ),
-      snackBarTheme: const SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
-      ),
-      toggleableActiveColor: const Color(0xFF13B9FF),
-    );
-  }
+enum AppTheme {
+  lightMode,
+  darkMode,
+}
 
-  static ThemeData get dark {
-    return ThemeData(
-      appBarTheme: const AppBarTheme(
-        color: Color(0xFF13B9FF),
+class AppThemes {
+  static final appThemeData = {
+    AppTheme.darkMode: ThemeData(
+      primarySwatch: Colors.grey,
+      primaryColor: Colors.black,
+      brightness: Brightness.dark,
+      backgroundColor: Colors.white,
+      dividerColor: Colors.black,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
       ),
-      colorScheme: ColorScheme.fromSwatch(
-        brightness: Brightness.dark,
-        accentColor: const Color(0xFF13B9FF),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(Colors.white),
+        ),
       ),
-      snackBarTheme: const SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
+      textTheme: const TextTheme(
+        subtitle1: TextStyle(color: Colors.white),
       ),
-      toggleableActiveColor: const Color(0xFF13B9FF),
-    );
-  }
+    ),
+    AppTheme.lightMode: ThemeData(
+      primarySwatch: Colors.grey,
+      primaryColor: Colors.black,
+      brightness: Brightness.dark,
+      backgroundColor: Colors.white,
+      dividerColor: Colors.black54,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Color(0xFF181920),
+        foregroundColor: Colors.white,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(Colors.black),
+        ),
+      ),
+      textTheme: const TextTheme(
+        subtitle1: TextStyle(color: Colors.black),
+      ),
+    )
+  };
 }

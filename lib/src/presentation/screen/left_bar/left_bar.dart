@@ -3,26 +3,15 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_state.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/dark_mode/dark_mode_bloc.dart';
 import 'package:todo_app_with_firebase/src/presentation/blocs/tasks/tasks_bloc.dart';
 
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
 import '../trash/trash.dart';
 
-class LeftBar extends StatefulWidget {
+class LeftBar extends StatelessWidget {
   const LeftBar({Key? key}) : super(key: key);
-
-  @override
-  State<LeftBar> createState() => _LeftBarState();
-}
-
-class _LeftBarState extends State<LeftBar> {
-  bool isDarkMode = false;
-
-  @override
-  void initState() {
-    isDarkMode = true;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +33,7 @@ class _LeftBarState extends State<LeftBar> {
                   Navigator.of(context).pushReplacementNamed(MainPage.id),
               child: Drawer(
                 width: 240,
-                backgroundColor: Colors.indigo[800],
+                // backgroundColor: Colors.indigo[800],
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -108,12 +97,20 @@ class _LeftBarState extends State<LeftBar> {
                         );
                       },
                     ),
-                    Switch(
-                      value: isDarkMode,
-                      onChanged: (v) {
-                        setState(() {
-                          isDarkMode = v;
-                        });
+                    BlocBuilder<DarkModeBloc, DarkModeState>(
+                      builder: (context, state) {
+                        return Switch(
+                          value: state.isDarkMode,
+                          onChanged: (v) {
+                            v
+                                ? context
+                                    .read<DarkModeBloc>()
+                                    .add(DarkModeOnEvent())
+                                : context
+                                    .read<DarkModeBloc>()
+                                    .add(DarkModeOffEvent());
+                          },
+                        );
                       },
                     )
                   ],
