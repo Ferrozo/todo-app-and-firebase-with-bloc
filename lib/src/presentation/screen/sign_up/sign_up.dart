@@ -47,7 +47,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF181920),
+      backgroundColor: const Color(0xFF1D1D29),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
@@ -112,9 +112,7 @@ class _SignUpState extends State<SignUp> {
                                 height: 65,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(204, 255, 255, 255)
-                                          .withOpacity(0.4),
+                                  color: const Color.fromARGB(255, 49, 49, 67),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: TextFormField(
@@ -154,8 +152,7 @@ class _SignUpState extends State<SignUp> {
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                     color:
-                                        const Color.fromARGB(204, 255, 255, 255)
-                                            .withOpacity(0.4),
+                                        const Color.fromARGB(255, 49, 49, 67),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: TextFormField(

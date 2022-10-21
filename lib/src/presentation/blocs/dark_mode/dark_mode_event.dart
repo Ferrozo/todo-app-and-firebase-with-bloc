@@ -6,3 +6,7 @@ abstract class DarkModeEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class DarkModeOnEvent extends DarkModeEvent {}
+
+class DarkModeOffEvent extends DarkModeEvent {}

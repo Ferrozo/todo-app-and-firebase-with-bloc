@@ -19,12 +19,14 @@ Future<void> main() async {
   await Firebase.initializeApp();
   HydratedBlocOverrides.runZoned(
     () => runApp(
-        // ignore: prefer_const_constructors
-        BlocProvider(
-            create: (context) => TasksBloc(),
-            child: HomePage(
-              appRouter: AppRouter(),
-            ))),
+      // ignore: prefer_const_constructors
+      BlocProvider(
+        create: (context) => TasksBloc(),
+        child: HomePage(
+          appRouter: AppRouter(),
+        ),
+      ),
+    ),
     storage: storage,
   );
 }

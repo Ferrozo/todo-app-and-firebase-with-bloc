@@ -23,7 +23,7 @@ class TaskTile extends StatelessWidget {
     return ListTile(
       trailing: Checkbox(
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(50))),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
         value: todo.isDone,
         onChanged: todo.isDeleted == false
             ? (v) {

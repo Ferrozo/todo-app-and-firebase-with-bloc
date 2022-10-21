@@ -15,31 +15,67 @@ class AddTaskInput extends StatelessWidget {
     TextEditingController titleController = TextEditingController();
 
     return Container(
+      color: const Color(0xFF1D1D29),
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Column(
-        children: [
-          const Text(
-            'Add your Task',
-          ),
-          TextField(
-            autofocus: true,
-            controller: titleController,
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              var task =
-                  Task(title: titleController.text, taskId: GUIDGen.generate());
-              context.read<TasksBloc>().add(AddTask(task: task));
-              Navigator.pop(context);
-            },
-            child: const Text(''),
-          )
-        ],
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 5,
+              ),
+              height: 65,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 49, 49, 67),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextFormField(
+                autofocus: true,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                ),
+                controller: titleController,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Task',
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        var task = Task(
+                            title: titleController.text,
+                            taskId: GUIDGen.generate());
+                        context.read<TasksBloc>().add(AddTask(task: task));
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.add)),
+                  errorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(width: 0, color: Colors.transparent),
+                  ),
+                ),
+              ),
+            ),
+            // Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            //   TextButton(
+            //     onPressed: () => Navigator.pop(context),
+            //     child: const Text('Cancel'),
+            //   ),
+            //   ElevatedButton(
+            //     onPressed: () {
+            //       var task = Task(
+            //           title: titleController.text, taskId: GUIDGen.generate());
+            //       context.read<TasksBloc>().add(AddTask(task: task));
+            //       Navigator.pop(context);
+            //     },
+            //     child: const Text('Add'),
+            //   )
+            // ]),
+          ],
+        ),
       ),
     );
   }

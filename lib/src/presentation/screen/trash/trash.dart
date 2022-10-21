@@ -14,18 +14,22 @@ class Trash extends StatelessWidget {
     return BlocBuilder<TasksBloc, TasksState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: const Color(0xFF181920),
+          backgroundColor: const Color(0xFF1D1D29),
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
             centerTitle: true,
-            title: const Text('Trash'),
+            title: Text(
+              'Trash (${state.removedTasks.length})',
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+            ),
           ),
           drawer: const LeftBar(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-                child: Chip(label: Text('${state.removedTasks.length}')),
-              ),
               TodoList(todosList: state.removedTasks),
             ],
           ),
