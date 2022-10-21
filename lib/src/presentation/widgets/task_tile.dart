@@ -12,12 +12,6 @@ class TaskTile extends StatelessWidget {
 
   final Task todo;
 
-  void _moveToTrashOrDeleteTask(BuildContext value, Task task) {
-    task.isDeleted!
-        ? value.read<TasksBloc>().add(DeleteTask(task: task))
-        : value.read<TasksBloc>().add(RemoveTask(task: task));
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -40,7 +34,7 @@ class TaskTile extends StatelessWidget {
           // fontWeight: FontWeight.bold,
         ),
       ),
-      onLongPress: () => _moveToTrashOrDeleteTask(context, todo),
+      // onLongPress: () => _moveToTrashOrDeleteTask(context, todo),
     );
   }
 }

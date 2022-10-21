@@ -141,14 +141,7 @@ class _MainPageState extends State<MainPage> {
                     ],
                   ),
                   const SizedBox(height: 30),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 1.8,
-                      child: TodoList(todosList: todosList),
-                    ),
-                  ),
+                  TodoList(todosList: todosList),
                 ],
               ),
             ),
