@@ -26,7 +26,7 @@ class TodoList extends StatelessWidget {
               top: 10,
             ),
             decoration: BoxDecoration(
-              color: Colors.indigo[800],
+              color: const Color(0xFF242432),
               borderRadius: BorderRadius.circular(15),
             ),
             child: TaskTile(todo: todo),

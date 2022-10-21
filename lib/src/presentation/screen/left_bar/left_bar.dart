@@ -2,13 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_bloc.dart';
 import 'package:todo_app_with_firebase/src/presentation/blocs/auth/auth_state.dart';
-import 'package:todo_app_with_firebase/src/presentation/blocs/dark_mode/dark_mode_bloc.dart';
 import 'package:todo_app_with_firebase/src/presentation/blocs/tasks/tasks_bloc.dart';
+import 'package:todo_app_with_firebase/src/presentation/screen/trash/trash.dart';
 
+import '../../blocs/auth/auth_event.dart';
 import '../main_page/main_page.dart';
 import '../sign_in/sign_in.dart';
-import '../trash/trash.dart';
 
 class LeftBar extends StatelessWidget {
   const LeftBar({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class LeftBar extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 50),
                       alignment: Alignment.centerLeft,
                       width: MediaQuery.of(context).size.width,
-                      height: 200,
+                      height: 150,
                       child: showCurrentUser.photoURL != null
                           ? Container(
                               height: 85,
@@ -63,12 +64,15 @@ class LeftBar extends StatelessWidget {
                               width: 60,
                             ),
                     ),
-                    Text(
-                      showCurrentUser.displayName ?? 'Dude',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    Container(
+                      margin: const EdgeInsets.only(left: 20, bottom: 10),
+                      child: Text(
+                        showCurrentUser.displayName ?? 'Dude',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     BlocBuilder<TasksBloc, TasksState>(
@@ -77,7 +81,7 @@ class LeftBar extends StatelessWidget {
                           onTap: () => Navigator.of(context)
                               .pushReplacementNamed(MainPage.id),
                           child: ListTile(
-                            leading: const Icon(Icons.folder),
+                            leading: const Icon(Icons.list_alt),
                             title: const Text('All tasks'),
                             trailing: Text('${state.allTasks.length}'),
                           ),
@@ -97,21 +101,27 @@ class LeftBar extends StatelessWidget {
                         );
                       },
                     ),
-                    BlocBuilder<DarkModeBloc, DarkModeState>(
-                      builder: (context, state) {
-                        return Switch(
-                          value: state.isDarkMode,
-                          onChanged: (v) {
-                            v
-                                ? context
-                                    .read<DarkModeBloc>()
-                                    .add(DarkModeOnEvent())
-                                : context
-                                    .read<DarkModeBloc>()
-                                    .add(DarkModeOffEvent());
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: TextButton(
+                          onPressed: () {
+                            context.read<AuthBloc>().add(SignOutRequested());
                           },
-                        );
-                      },
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.output,
+                                color: Colors.white,
+                              ),
+                              SizedBox(width: 10),
+                              Text('Sign out',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ))
+                            ],
+                          )),
                     )
                   ],
                 ),

@@ -54,7 +54,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xFF181920),
+      backgroundColor: const Color(0xFF1D1D29),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
@@ -63,7 +63,6 @@ class _SignInState extends State<SignIn> {
                 MaterialPageRoute(builder: (context) => const MainPage()));
           }
           if (state is AuthError) {
-            // Showing the error message if the user has entered invalid credentials
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.error.toString())));
           }
@@ -71,13 +70,11 @@ class _SignInState extends State<SignIn> {
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             if (state is Loading) {
-              // Showing the loading indicator while the user is signing in
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             if (state is UnAuthenticated) {
-              // Showing the sign in form if the user is not authenticated
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
@@ -121,8 +118,7 @@ class _SignInState extends State<SignIn> {
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                     color:
-                                        const Color.fromARGB(204, 255, 255, 255)
-                                            .withOpacity(0.4),
+                                        const Color.fromARGB(255, 49, 49, 67),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: TextFormField(
@@ -162,8 +158,7 @@ class _SignInState extends State<SignIn> {
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                     color:
-                                        const Color.fromARGB(204, 255, 255, 255)
-                                            .withOpacity(0.4),
+                                        const Color.fromARGB(255, 49, 49, 67),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: TextFormField(
