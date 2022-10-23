@@ -5,6 +5,7 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+.DS_Store
 .flutter-plugins
 .flutter-plugins-dependencies
 .fvm/
